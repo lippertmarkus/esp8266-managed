@@ -17,43 +17,43 @@ add_custom_target(
 
 add_custom_target(
     PLATFORMIO_UPLOAD ALL
-    COMMAND ${PLATFORMIO_CMD} -f -c clion -e ${PIO_ENV} run --target upload
+    COMMAND ${PLATFORMIO_CMD} -f -c clion run -e ${PIO_ENV} --target upload
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(
     PLATFORMIO_CLEAN ALL
-    COMMAND ${PLATFORMIO_CMD} -f -c clion -e ${PIO_ENV} run --target clean
+    COMMAND ${PLATFORMIO_CMD} -f -c clion run -e ${PIO_ENV} --target clean
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(
     PLATFORMIO_TEST ALL
-    COMMAND ${PLATFORMIO_CMD} -f -c clion -e ${PIO_ENV} test
+    COMMAND ${PLATFORMIO_CMD} -f -c clion test -e ${PIO_ENV}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(
     PLATFORMIO_PROGRAM ALL
-    COMMAND ${PLATFORMIO_CMD} -f -c clion -e ${PIO_ENV} run --target program
+    COMMAND ${PLATFORMIO_CMD} -f -c clion run -e ${PIO_ENV} --target program
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(
     PLATFORMIO_UPLOADFS ALL
-    COMMAND ${PLATFORMIO_CMD} -f -c clion -e ${PIO_ENV} run --target uploadfs
+    COMMAND ${PLATFORMIO_CMD} -f -c clion run -e ${PIO_ENV} --target uploadfs
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(
     PLATFORMIO_UPDATE_ALL ALL
-    COMMAND ${PLATFORMIO_CMD} -f -c clion -e ${PIO_ENV} update
+    COMMAND ${PLATFORMIO_CMD} -f -c clion update
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(
     PLATFORMIO_REBUILD_PROJECT_INDEX ALL
-    COMMAND ${PLATFORMIO_CMD} -f -c clion -e ${PIO_ENV} init --ide clion
+    COMMAND ${PLATFORMIO_CMD} -f -c clion init --ide clion
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
