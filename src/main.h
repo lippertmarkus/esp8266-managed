@@ -1,7 +1,8 @@
 #ifndef ESP8266_MANAGED_MAIN_H
 #define ESP8266_MANAGED_MAIN_H
 
-#include <Arduino.h>
+#include "modules/wifi/wifi.h"
+#include "modules/mqtt/mqtt.h"
 
 void setup();
 void loop();
