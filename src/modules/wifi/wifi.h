@@ -4,6 +4,6 @@
 #include "config.h"
 #include <ESP8266WiFi.h>
 
-void setup_wifi();
+void wifi_setup();
 
 #endif //ESP8266_MANAGED_WIFI_H

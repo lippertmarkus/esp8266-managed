@@ -1,26 +1,54 @@
 #include "mqtt.h"
 
-WiFiClient mqttWifiClient;
-PubSubClient mqttClient(mqttWifiClient);
+WiFiClient espClient;
+PubSubClient mqttClient(espClient);
 
-void setup_mqtt() {
+void mqtt_setup() {
     mqttClient.setServer(mqtt_server, mqtt_port);
     mqttClient.setCallback(mqtt_callback);
+}
+
+void mqtt_loop() {
+    if (!mqttClient.connected()) {
+        mqtt_reconnect();
+    }
+    mqttClient.loop();
+
+    mqtt_publish();
+}
+
+void mqtt_callback(char* intopic, byte* payload, unsigned int length) {
+    Serial.print("Message arrived [");
+    Serial.print(intopic);
+    Serial.print("] ");
+
+    String topic = intopic;
+    String message = "";
+
+    for (int i = 0; i < length; i++) {
+        message.concat((char)payload[i]);
+    }
+    Serial.println(message);
+
+    system_mqtt_callback(topic, message);
+    tx433mhz_mqtt_callback(topic, message);
+    ir_mqtt_callback(topic, message);
+    // TODO
 }
 
 void mqtt_reconnect() {
     // Loop until we're reconnected
     while (!mqttClient.connected()) {
         Serial.print("Attempting MQTT connection...");
-        // Create a random client ID
-        String clientId = "ESP8266Client-";
-        clientId += String(random(0xffff), HEX);
+
+        String hostname = WiFi.hostname();
+        hostname.toLowerCase();
+
         // Attempt to connect
-        if (mqttClient.connect(clientId.c_str())) {
+        if (mqttClient.connect(hostname.c_str())) {
             Serial.println("connected");
 
-            // ... and resubscribe
-            mqttClient.subscribe("mmxm/inTopic");
+            mqtt_subscribe();
         } else {
             Serial.print("failed, rc=");
             Serial.print(mqttClient.state());
@@ -31,19 +59,15 @@ void mqtt_reconnect() {
     }
 }
 
-void mqtt_callback(char* topic, byte* payload, unsigned int length) {
-    Serial.print("Message arrived [");
-    Serial.print(topic);
-    Serial.print("] ");
-    for (int i = 0; i < length; i++) {
-        Serial.print((char)payload[i]);
-    }
-    Serial.println();
+void mqtt_subscribe() {
+    system_subscribe(mqttClient);
+    tx433mhz_subscribe(mqttClient);
+    ir_subscribe(mqttClient);
+    // TODO
 }
 
-void mqtt_loop() {
-    if (!mqttClient.connected()) {
-        mqtt_reconnect();
-    }
-    mqttClient.loop();
+void mqtt_publish() {
+    dht11_publish(mqttClient);
+    contacts_publish(mqttClient);
+    // TODO
 }

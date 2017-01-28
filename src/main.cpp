@@ -2,8 +2,12 @@
 
 void setup() {
     Serial.begin(115200);
-    setup_wifi();
-    setup_mqtt();
+
+    wifi_setup();
+    mqtt_setup();
+    ir_setup();
+    tx433mhz_setup();
+    contacts_setup();
 }
 
 void loop() {

@@ -3,6 +3,10 @@
 
 #include "modules/wifi/wifi.h"
 #include "modules/mqtt/mqtt.h"
+#include "modules/ir/ir.h"
+#include "modules/tx433mhz/tx433mhz.h"
+#include "modules/contacts/contacts.h"
+
 
 void setup();
 void loop();
