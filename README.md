@@ -13,3 +13,13 @@
 ##ToDo's
 - Configure ESP via JSON string
 - Create UI for managing & configuring ESPs and publishing such JSON string via MQTT (like [IBM Watson IoT Platform](https://developer.ibm.com/recipes/tutorials/run-an-esp8266arduino-as-a-iot-foundation-managed-device/), just free)
+
+##Installation
+You need python for building. First, clone repository and change into the cloned directory. May set your board in `platformio.ini`, then do
+```
+pip install -U platformio
+git submodule update --init --recursive
+platformio run -e default
+```
+        
+    

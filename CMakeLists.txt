@@ -4,9 +4,9 @@ project(esp8266-managed)
 include(CMakeListsPrivate.txt)
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/config.local.cpp")
-    set(PIO_ENV esp12e-localconfig)
+    set(PIO_ENV localconfig)
 else()
-    set(PIO_ENV esp12e)
+    set(PIO_ENV default)
 endif()
 
 add_custom_target(
@@ -56,6 +56,5 @@ add_custom_target(
         COMMAND ${PLATFORMIO_CMD} -f -c clion init --ide clion
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
-
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
