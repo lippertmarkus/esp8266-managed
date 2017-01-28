@@ -13,11 +13,6 @@
 # * User Guide for `platformio ci` command
 #   < http://docs.platformio.org/page/userguide/cmd_ci.html >
 #
-#
-# Please choice one of the following templates (proposed below) and uncomment
-# it (remove "# " before each line) or use own configuration according to the
-# Travis CI documentation (see above).
-#
 
 language: python
 python:
