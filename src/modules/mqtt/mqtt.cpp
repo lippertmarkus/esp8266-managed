@@ -42,11 +42,17 @@ void mqtt_reconnect() {
         Serial.print("Attempting MQTT connection...");
 
         String hostname = WiFi.hostname();
-        hostname.toLowerCase();
+        String subtopic = "/status";
+        String willTopic = hostname + subtopic;
 
         // Attempt to connect
-        if (mqttClient.connect(hostname.c_str())) {
+        if (mqttClient.connect(hostname.c_str(), willTopic.c_str(), 1, true, "OFF")) {
             Serial.println("connected");
+
+            Serial.print("ESP's status is published at: ");
+            Serial.println(willTopic);
+
+            mqttClient.publish(willTopic.c_str(), "ON", true);
 
             mqtt_subscribe();
         } else {
