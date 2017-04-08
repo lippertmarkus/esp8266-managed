@@ -1,5 +1,7 @@
 # esp8266-managed
 
+[![Build Status](https://travis-ci.org/lippertmarkus/esp8266-managed.svg?branch=master)](https://travis-ci.org/lippertmarkus/esp8266-managed)
+
 ## Features
 - Central configuration
 - All functions accessible via [MQTT](http://mqtt.org/) (message format optimized for [OpenHab 2](http://www.openhab.org/))
