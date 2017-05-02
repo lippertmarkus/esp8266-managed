@@ -21,6 +21,13 @@ You need python for building. First, clone repository and change into the cloned
 ```
 pip install -U platformio
 git submodule update --init --recursive
+```
+You can then set the configuration in [config.cpp](src/config.cpp) and build the firmware:
+```
 platformio run -e default
 ```
-You can then set the configuration in [config.cpp](src/config.cpp) and upload it to your ESP.
+
+For automatically uploading, execute:
+```
+platformio run -e default -t upload
+```
