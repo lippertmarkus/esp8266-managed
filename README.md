@@ -23,5 +23,4 @@ pip install -U platformio
 git submodule update --init --recursive
 platformio run -e default
 ```
-        
-    
+You can then set the configuration in [config.cpp](src/config.cpp) and upload it to your ESP.
